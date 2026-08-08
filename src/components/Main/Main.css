@@ -1,0 +1,74 @@
+.main-content {
+  padding: 40px 20px;
+}
+
+.main-content__title {
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: var(--nintendo-red);
+}
+
+/* Uso estrito de Grid Layout exigido pelo projeto */
+.main-content__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Estilo do Card individual BEM */
+.card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px;
+}
+
+.card__image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card__body {
+  padding: 16px;
+}
+
+.card__title {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.card__hint {
+  font-size: 13px;
+  color: var(--nintendo-red);
+  margin-bottom: 8px;
+}
+
+.card__text {
+  font-size: 15px;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin-top: 12px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,12 @@
+.footer {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto; /* Empurra o footer sempre para o final da página */
+}
+
+.footer__text {
+  font-size: 14px;
+  margin: 0;
+}

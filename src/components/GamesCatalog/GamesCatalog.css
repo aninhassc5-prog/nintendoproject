@@ -1,0 +1,133 @@
+.games-catalog {
+  padding: 40px 20px;
+  background-color: #f4f4f4;
+}
+
+.games-catalog__title {
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: #1a1a1a;
+}
+
+.games-catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
+  gap: 16px; /* Espaçamento menor igual ao Figma */
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Novo estilo do Cartão baseado no Figma */
+.card-post {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-post__image-container {
+  position: relative; /* Permite posicionar o botão por cima da foto */
+  width: 100%;
+  height: 200px;
+}
+
+.card-post__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Estilo do Botão Salvar (Borda cinza redonda) */
+.card-post__save-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Mensagem flutuante (Escondida por padrão) */
+.card-post__tooltip {
+  visibility: hidden;
+  position: absolute;
+  right: 48px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Mostra a mensagem flutuante ao passar o mouse */
+.card-post__save-button:hover .card-post__tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Corpo do texto alinhado com o Figma */
+.card-post__body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-post__date {
+  font-size: 14px;
+  color: #b0b0b0;
+  margin: 0 0 12px 0;
+}
+
+.card-post__card-title {
+  font-size: 22px;
+  color: #1a1a1a;
+  margin: 0 0 14px 0;
+  line-height: 1.2;
+}
+
+.card-post__description {
+  font-size: 14px;
+  color: #1a1a1a;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+
+.card-post__source {
+  font-size: 12px;
+  font-weight: bold;
+  color: #b0b0b0;
+  letter-spacing: 1px;
+  margin-top: auto; /* Empurra o nome da fonte para o fundo do card */
+}
+
+/* Estilos do botão Mostrar Mais */
+.games-catalog__more-button {
+  display: block;
+  margin: 32px auto 0 auto;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+  border-radius: 24px;
+}
+
+.games-catalog__more-button:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}

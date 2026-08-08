@@ -1,0 +1,16 @@
+.about {
+  background-color: var(--bg-secondary);
+  padding: 40px 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.about__title {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.about__text {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 600px;
+}
