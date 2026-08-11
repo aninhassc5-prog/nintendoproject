@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./GamesCatalog.css";
 import Preloader from "../Preloader/Preloader";
 import NotFound from "../NotFound/NotFound";
+import iconebookmark from "../../images/bookmark.svg";
+import iconepantool from "../../images/pantool.svg";
 
 function GamesCatalog({
   games,
@@ -11,13 +13,9 @@ function GamesCatalog({
   hasMore,
   onShowMore,
 }) {
-  // Simulação de estado de Login (mude para true se quiser testar como utilizador logado)
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Estado para guardar quais os IDs dos cartões que foram salvos (ficam azuis)
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [savedCardIds, setSavedCardIds] = useState([]);
 
-  // Função para formatar a data americana (AAAA-MM-DD) para o formato do Figma (D de mês de AAAA)
   const formatarData = (dataString) => {
     if (!dataString) return "Data desconhecida";
     const data = new Date(dataString);
@@ -35,17 +33,15 @@ function GamesCatalog({
       "novembro",
       "dezembro",
     ];
-    return `${data.getDate()} de ${meses[data.getMonth()]}, ${data.getFullYear()}`;
+    return `${data.getDate()} de ${meses[data.getMonth()]} de ${data.getFullYear()}`;
   };
 
   const handleSaveClick = (id) => {
-    if (!isLoggedIn) return; // Se não estiver logado, não faz nada ao clicar
+    if (!isLoggedIn) return;
 
     if (savedCardIds.includes(id)) {
-      // Se já estava salvo, remove da lista (simula o DELETE)
       setSavedCardIds(savedCardIds.filter((cardId) => cardId !== id));
     } else {
-      // Se não estava salvo, adiciona à lista (simula o POST /articles)
       setSavedCardIds([...savedCardIds, id]);
     }
   };
@@ -70,7 +66,6 @@ function GamesCatalog({
 
               return (
                 <article key={game.id} className="card-post">
-                  {/* Área da Imagem com o Botão de Salvar posicionado por cima */}
                   <div className="card-post__image-container">
                     <img
                       src={game.background_image}
@@ -78,29 +73,26 @@ function GamesCatalog({
                       className="card-post__image"
                     />
 
-                    {/* Botão Salvar (Ícone do Marcador) */}
+                    {/* Botão Salvar com a classe dinâmica se estiver ativo */}
                     <button
                       type="button"
                       className={`card-post__save-button ${estaSalvo ? "card-post__save-button_active" : ""}`}
                       onClick={() => handleSaveClick(game.id)}
                     >
-                      {/* Desenho do marcador em SVG */}
-                      <svg
-                        width="14"
-                        height="19"
-                        viewBox="0 0 14 19"
-                        fill="none"
-                        xmlns="http://w3.org"
-                      >
-                        <path
-                          d="M1 1V16.5L7 12L13 16.5V1H1Z"
-                          stroke="#B0B0B0"
-                          strokeWidth="2"
-                          fill={estaSalvo ? "#2F71E5" : "none"}
-                        />
-                      </svg>
+                      <img
+                        src={iconeMarcador}
+                        alt="Salvar"
+                        className={`card-post__bookmark-icon ${estaSalvo ? "card-post__bookmark-icon_blue" : ""}`}
+                      />
 
-                      {/* Mensagem flutuante (Tooltip) se o utilizador não estiver logado */}
+                      {/* Texto "Artigo salvo" que surge apenas se estiver guardado */}
+                      {estaSalvo && (
+                        <span className="card-post__saved-text">
+                          Artigo salvo
+                        </span>
+                      )}
+
+                      {/* Mensagem flutuante para utilizador deslogado */}
                       {!isLoggedIn && (
                         <span className="card-post__tooltip">
                           Faça o login para salvar os artigos.
@@ -109,7 +101,6 @@ function GamesCatalog({
                     </button>
                   </div>
 
-                  {/* Corpo de Texto Fixo em Baixo - Exatamente como no Figma */}
                   <div className="card-post__body">
                     <p className="card-post__date">
                       {formatarData(game.released)}

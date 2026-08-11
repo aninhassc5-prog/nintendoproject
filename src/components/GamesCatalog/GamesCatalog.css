@@ -9,15 +9,16 @@
   color: #1a1a1a;
 }
 
+/* GRID FIXA: Garante exatamente 3 colunas por linha no PC */
 .games-catalog__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
-  gap: 16px; /* Espaçamento menor igual ao Figma */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
   max-width: 1280px;
   margin: 0 auto;
 }
 
-/* Novo estilo do Cartão baseado no Figma */
+/* Estrutura do Cartão baseado no Figma */
 .card-post {
   background: #ffffff;
   border-radius: 12px;
@@ -28,7 +29,7 @@
 }
 
 .card-post__image-container {
-  position: relative; /* Permite posicionar o botão por cima da foto */
+  position: relative;
   width: 100%;
   height: 200px;
 }
@@ -39,7 +40,7 @@
   object-fit: cover;
 }
 
-/* Estilo do Botão Salvar (Borda cinza redonda) */
+/* Botão Salvar com o cursor da sua maozinha.svg descarregada */
 .card-post__save-button {
   position: absolute;
   top: 16px;
@@ -52,8 +53,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  cursor: url("../../images/pantool.svg"), pointer;
   transition: all 0.2s ease;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Microanimação de clique: o botão afunda ligeiramente */
+.card-post__save-button:active {
+  transform: scale(0.95);
+}
+
+/* O ícone do marcador dentro do botão */
+.card-post__bookmark-icon {
+  width: 14px;
+  height: 19px;
+  transition: filter 0.2s ease;
+}
+
+/* Filtro CSS avançado que transforma o seu SVG cinza em azul real (#2F71E5) */
+.card-post__bookmark-icon_blue {
+  filter: invert(38%) sepia(87%) saturate(1633%) hue-rotate(204deg)
+    brightness(96%) contrast(93%);
 }
 
 /* Mensagem flutuante (Escondida por padrão) */
@@ -70,9 +90,10 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 10;
 }
 
-/* Mostra a mensagem flutuante ao passar o mouse */
+/* Mostra a mensagem flutuante ao passar o rato por cima */
 .card-post__save-button:hover .card-post__tooltip {
   visibility: visible;
   opacity: 1;
@@ -111,7 +132,7 @@
   font-weight: bold;
   color: #b0b0b0;
   letter-spacing: 1px;
-  margin-top: auto; /* Empurra o nome da fonte para o fundo do card */
+  margin-top: auto;
 }
 
 /* Estilos do botão Mostrar Mais */
@@ -130,4 +151,30 @@
 .games-catalog__more-button:hover {
   background-color: #1a1a1a;
   color: #ffffff;
+}
+
+/* RESPONSIVIDADE: Adaptação de colunas para ecrãs menores */
+@media (max-width: 1024px) {
+  .games-catalog__grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablets */
+  }
+}
+
+@media (max-width: 650px) {
+  .games-catalog__grid {
+    grid-template-columns: 1fr; /* 1 coluna em telemóveis */
+  }
+}
+.card-post__saved-text {
+  position: absolute;
+  right: 48px;
+  background-color: #ffffff;
+  color: #2f71e5;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.2s ease-in-out;
 }

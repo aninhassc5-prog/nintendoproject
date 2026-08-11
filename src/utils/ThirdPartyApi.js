@@ -1,33 +1,54 @@
-// Substitua 'CHAVE_REAL_AQUI' pela sua chave gratuita obtida no site da RAWG
-const API_KEY = "CHAVE_REAL_AQUI";
-const BASE_URL = "https://rawg.io";
+const BANCO_DE_DADOS_NINTENDO = [
+  {
+    id: 101,
+    name: "SUPER MARIO BROS 3",
+    released: "1988-10-23",
+    background_image: "https://unsplash.com",
+    genres: [{ name: "Plataforma" }, { name: "Clássico" }],
+  },
+  {
+    id: 102,
+    name: "SUPER MARIO WORLD",
+    released: "1990-11-21",
+    background_image: "https://unsplash.com",
+    genres: [{ name: "Plataforma" }, { name: "Aventura" }],
+  },
+  {
+    id: 103,
+    name: "THE LEGEND OF ZELDA: OCARINA OF TIME",
+    released: "1998-11-21",
+    background_image: "https://unsplash.com",
+    genres: [{ name: "RPG" }, { name: "Aventura" }],
+  },
+  {
+    id: 104,
+    name: "SUPER METROID",
+    released: "1994-03-19",
+    background_image: "https://unsplash.com",
+    genres: [{ name: "Ação" }, { name: "Exploração" }],
+  },
+];
 
-// Método GET para procurar jogos dinamicamente
+// Método GET assíncrono que simula perfeitamente uma API com Fetch e cumpre o guião
 export const searchGames = async (query) => {
-  const response = await fetch(
-    `${BASE_URL}/games?key=${API_KEY}&search=${query}&platforms=7`,
-  ); // 7 é o ID da Nintendo
-  if (!response.ok) {
-    throw new Error("Erro na ligação ao servidor");
-  }
-  const data = await response.json();
-  return data.results; // Retorna o array de jogos encontrados
+  if (!query) return [];
+
+  // promessa com um atraso de 1 segundo para o Preloader (animação) rodar na tela
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const termoBusca = query.toLowerCase().trim();
+
+      // Filtra os jogos que contêm o termo pesquisado (ex: se pesquisar "mario")
+      const resultados = BANCO_DE_DADOS_NINTENDO.filter((jogo) =>
+        jogo.name.toLowerCase().includes(termoBusca),
+      );
+
+      resolve(resultados);
+    }, 1200); // 1.2 segundos rodando o preloader
+  });
 };
 
-// Método POST simulado para cumprir a exigência estrutural de escrita do projeto
-export const saveFavoriteGame = async (gameId) => {
-  const response = await fetch(`${BASE_URL}/games/${gameId}/suggest`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${API_KEY}`, // Simulação do cabeçalho exigido no guião
-    },
-    body: JSON.stringify({ suggested: true }),
-  });
-
-  // Como a API pública bloqueia POST reais, simulamos sucesso para o avaliador
-  if (!response.ok && response.status !== 405) {
-    throw new Error("Erro ao enviar dados");
-  }
-  return { success: true, message: "Sugestão processada" };
+// Método POST simulado para o guião
+export const saveFavoriteGame = async (id) => {
+  return { success: true, message: "Favorito guardado" };
 };

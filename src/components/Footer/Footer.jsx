@@ -4,7 +4,9 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer className="footer">
-      <p>&copy; {new Date().getFullYear()} Nintendo Blog Project</p>
+      <p className="footer__text">
+        &copy; {new Date().getFullYear()} Nintendo Blog Project - Tripleten 2026
+      </p>
     </footer>
   );
 }
