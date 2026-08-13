@@ -1,0 +1,15 @@
+.footer {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  text-align: center;
+  padding: 24px 20px;
+  margin-top: auto; /* Garante que o rodapé fica sempre na base do ecrã */
+  border-top: 1px solid #2e303a;
+}
+
+.footer__text {
+  font-size: 14px;
+  margin: 0;
+  color: #b0b0b0;
+  letter-spacing: 0.5px;
+}

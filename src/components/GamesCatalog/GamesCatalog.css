@@ -1,0 +1,195 @@
+.games-catalog {
+  padding: 40px 20px;
+  background-color: #f4f4f4;
+}
+
+.games-catalog__title {
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: #1a1a1a;
+}
+
+/* GRID FIXA: Garante exatamente 3 colunas por linha no PC */
+.games-catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Estrutura do Cartão baseado no Figma */
+.card-post {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-post__image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.card-post__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Botão Salvar com o cursor da sua maozinha.svg descarregada */
+.card-post__save-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor:
+    url("../../images/maozinha.svg"), pointer; /* Carrega o seu ícone da luva */
+  transition: all 0.2s ease;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Microanimação de clique: o botão afunda ligeiramente */
+.card-post__save-button:active {
+  transform: scale(0.95);
+}
+
+/* O ícone do marcador dentro do botão */
+.card-post__bookmark-icon {
+  width: 14px;
+  height: 19px;
+  transition: filter 0.2s ease;
+}
+
+/* Filtro CSS avançado que transforma o seu SVG cinza em azul real (#2F71E5) */
+.card-post__bookmark-icon_blue {
+  filter: invert(38%) sepia(87%) saturate(1633%) hue-rotate(204deg)
+    brightness(96%) contrast(93%);
+}
+
+/* Texto "Artigo salvo" que surge de forma elegante ao lado do marcador */
+.card-post__saved-text {
+  position: absolute;
+  right: 48px;
+  background-color: #ffffff;
+  color: #2f71e5;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Mensagem flutuante para utilizador deslogado (Escondida por padrão) */
+.card-post__tooltip {
+  visibility: hidden;
+  position: absolute;
+  right: 48px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+/* Mostra a mensagem flutuante ao passar o rato por cima */
+.card-post__save-button:hover .card-post__tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Corpo do texto alinhado com o Figma */
+.card-post__body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-post__date {
+  font-size: 14px;
+  color: #b0b0b0;
+  margin: 0 0 12px 0;
+}
+
+.card-post__card-title {
+  font-size: 22px;
+  color: #1a1a1a;
+  margin: 0 0 14px 0;
+  line-height: 1.2;
+}
+
+.card-post__description {
+  font-size: 14px;
+  color: #1a1a1a;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+
+.card-post__source {
+  font-size: 12px;
+  font-weight: bold;
+  color: #b0b0b0;
+  letter-spacing: 1px;
+  margin-top: auto;
+}
+
+/* Estilos do botão Mostrar Mais */
+.games-catalog__more-button {
+  display: block;
+  margin: 32px auto 0 auto;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+  border-radius: 24px;
+}
+
+.games-catalog__more-button:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Animação suave para o texto salvo */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* RESPONSIVIDADE: Adaptação de colunas para ecrãs menores */
+@media (max-width: 1024px) {
+  .games-catalog__grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablets */
+  }
+}
+
+@media (max-width: 650px) {
+  .games-catalog__grid {
+    grid-template-columns: 1fr; /* 1 coluna em telemóveis */
+  }
+}
