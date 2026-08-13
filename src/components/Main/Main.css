@@ -1,0 +1,21 @@
+.main-content__grid {
+  display: grid;
+  /* Fixa exatamente 3 colunas em telas grandes (computador) */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Regra responsiva: se a tela for menor (tablet/telemóvel), os cards descem */
+@media (max-width: 1024px) {
+  .main-content__grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 por linha em tablets */
+  }
+}
+
+@media (max-width: 650px) {
+  .main-content__grid {
+    grid-template-columns: 1fr; /* 1 por linha em telemóveis */
+  }
+}
