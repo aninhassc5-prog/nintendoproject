@@ -1,54 +1,38 @@
-const BANCO_DE_DADOS_NINTENDO = [
-  {
-    id: 101,
-    name: "SUPER MARIO BROS 3",
-    released: "1988-10-23",
-    background_image: "https://unsplash.com",
-    genres: [{ name: "Plataforma" }, { name: "Clássico" }],
-  },
-  {
-    id: 102,
-    name: "SUPER MARIO WORLD",
-    released: "1990-11-21",
-    background_image: "https://unsplash.com",
-    genres: [{ name: "Plataforma" }, { name: "Aventura" }],
-  },
-  {
-    id: 103,
-    name: "THE LEGEND OF ZELDA: OCARINA OF TIME",
-    released: "1998-11-21",
-    background_image: "https://unsplash.com",
-    genres: [{ name: "RPG" }, { name: "Aventura" }],
-  },
-  {
-    id: 104,
-    name: "SUPER METROID",
-    released: "1994-03-19",
-    background_image: "https://unsplash.com",
-    genres: [{ name: "Ação" }, { name: "Exploração" }],
-  },
-];
+const BASE_URL = "https://pokeapi.co";
 
-// Método GET assíncrono que simula perfeitamente uma API com Fetch e cumpre o guião
+// Método GET real que busca na PokeAPI da Nintendo online
 export const searchGames = async (query) => {
   if (!query) return [];
+  try {
+    // Converte para minúsculas porque a PokeAPI exige nomes em minúsculas
+    const termo = query.toLowerCase().trim();
+    const response = await fetch(`${BASE_URL}/pokemon/${termo}`);
 
-  // promessa com um atraso de 1 segundo para o Preloader (animação) rodar na tela
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const termoBusca = query.toLowerCase().trim();
+    // Se não encontrar o termo pesquisado, retorna array vazio para o "Nada Encontrado"
+    if (!response.ok) {
+      return [];
+    }
 
-      // Filtra os jogos que contêm o termo pesquisado (ex: se pesquisar "mario")
-      const resultados = BANCO_DE_DADOS_NINTENDO.filter((jogo) =>
-        jogo.name.toLowerCase().includes(termoBusca),
-      );
+    const data = await response.json();
 
-      resolve(resultados);
-    }, 1200); // 1.2 segundos rodando o preloader
-  });
+    // Mapeia os dados exatamente no formato que o seu GamesCatalog.jsx já lê
+    return [
+      {
+        id: data.id,
+        name: data.name.toUpperCase(),
+        released: "Universo Nintendo",
+        background_image:
+          data.sprites.other["official-artwork"].front_default ||
+          data.sprites.front_default,
+        genres: data.types.map((t) => ({ name: t.type.name })),
+      },
+    ];
+  } catch (error) {
+    throw new Error("Erro na ligação ao servidor");
+  }
 };
 
-// Método POST simulado para o guião
+// Método POST simulado para cumprir a estrutura do guião
 export const saveFavoriteGame = async (id) => {
-  return { success: true, message: "Favorito guardado" };
+  return { success: true, message: "Favorito guardado com sucesso" };
 };
