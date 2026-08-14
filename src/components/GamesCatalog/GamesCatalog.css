@@ -61,6 +61,7 @@
 
 /* Microanimação de clique: o botão afunda ligeiramente */
 .card-post__save-button:active {
+  cursor: grab;
   transform: scale(0.95);
 }
 
