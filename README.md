@@ -58,6 +58,6 @@ src/
    ```
 4. Abra o endereço `http://localhost:5173` no seu navegador de internet.
 
-> 🌐 **Link do Deploy do Projeto:** [https://nintendoproject-git-main-aninha2.vercel.app/](https://vercel.app)
+> 🌐 **Link do Deploy do Projeto:** [https://nintendoproject.vercel.app/](https://vercel.app)
 
 Por Ana Sofia Sanches
