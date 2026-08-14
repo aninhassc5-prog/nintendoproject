@@ -4,6 +4,7 @@ import "./App.css";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import Main from "../Main/Main";
+import About from "../About/About";
 import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
@@ -62,8 +63,16 @@ function App() {
       <SearchForm onSearch={handleSearchSubmit} />
 
       <Routes>
-        {/* Página Inicial - Blog Histórico */}
-        <Route path="/" element={<Main />} />
+        {/* Página Inicial - Blog Histórico e Secção Sobre a Autora */}
+        <Route
+          path="/"
+          element={
+            <>
+              <Main />
+              <About />
+            </>
+          }
+        />
 
         {/* Página do Catálogo - Resultados da API */}
         <Route

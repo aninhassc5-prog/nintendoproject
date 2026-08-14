@@ -1,3 +1,13 @@
+.main-content__title {
+  font-size: 28px;
+  margin-bottom: 54px; /* Aumentado para dar mais espaço antes dos cards */
+  color: #1a1a1a;
+  text-align: left;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .main-content__grid {
   display: grid;
   /* Fixa exatamente 3 colunas em telas grandes (computador) */
