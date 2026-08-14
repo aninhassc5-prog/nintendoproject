@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./GamesCatalog.css";
 import Preloader from "../Preloader/Preloader";
 import NotFound from "../NotFound/NotFound";
-import iconeMarcador from "../../images/marcador.svg";
-import iconeMaozinha from "../../images/maozinha.svg";
 
 function GamesCatalog({
   games,
@@ -73,16 +71,27 @@ function GamesCatalog({
                       className="card-post__image"
                     />
 
+                    {/* Botão Salvar corrigido para usar SVG Inline sem depender da pasta images */}
                     <button
                       type="button"
-                      className={`card-post__save-button ${estaSalvo ? "card-post__save-button_active" : ""}`}
+                      className="card-post__save-button"
                       onClick={() => handleSaveClick(game.id)}
                     >
-                      <img
-                        src={iconeMarcador}
-                        alt="Salvar"
-                        className={`card-post__bookmark-icon ${estaSalvo ? "card-post__bookmark-icon_blue" : ""}`}
-                      />
+                      <svg
+                        width="14"
+                        height="19"
+                        viewBox="0 0 14 19"
+                        fill="none"
+                        xmlns="http://w3.org"
+                        className="card-post__bookmark-icon"
+                      >
+                        <path
+                          d="M1 1V16.5L7 12L13 16.5V1H1Z"
+                          stroke={estaSalvo ? "#2F71E5" : "#B0B0B0"}
+                          strokeWidth="2"
+                          fill={estaSalvo ? "#2F71E5" : "none"}
+                        />
+                      </svg>
 
                       {estaSalvo && (
                         <span className="card-post__saved-text">
